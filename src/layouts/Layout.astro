@@ -1,0 +1,49 @@
+---
+interface Props {
+	title: string;
+}
+
+import Background from "../components/Background.astro";
+
+
+
+const { title } = Astro.props;
+
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="AI jhangmez" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="absolute top-0 z-[-2] h-screen w-full
+  bg-[radial-gradient(100%_50%_at_50%_0%,rgba(26,108,48,0.13)_0,rgba(26,108,48,0)_50%,rgba(26,108,48,0)_100%)]
+  dark:bg-[radial-gradient(100%_50%_at_50%_0%,rgba(169,251,175,0.13)_0,rgba(169,251,175,0)_50%,rgba(169,251,175,0)_100%)] bg-light-background dark:bg-dark-background selection:bg-light-primary selection:text-light-onPrimary dark:selection:bg-dark-primary dark:selection:text-dark-onPrimary">
+		<!-- <Background  > -->
+		<slot />
+		<footer>
+			<LanguagePicker />
+		</footer>
+	</body>
+</html>
+<style is:global>
+	@font-face {
+  font-family: 'Plus Jakarta Sans';
+  src: url('/fonts/PlusJakartaSans-VariableFont_wght.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+	html {
+		background: #131a13;
+	}
+</style>
